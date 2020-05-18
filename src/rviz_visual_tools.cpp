@@ -2218,7 +2218,7 @@ bool RvizVisualTools::publishWireframeCuboid(const Eigen::Isometry3d& pose, cons
   }
 
   std_msgs::ColorRGBA this_color = getColor(color);
-  line_list_marker_.scale = getScale(XXSMALL);
+  line_list_marker_.scale = getScale(LARGE);
   line_list_marker_.scale.y = 0;
   line_list_marker_.scale.z = 0;
   line_list_marker_.color = this_color;
