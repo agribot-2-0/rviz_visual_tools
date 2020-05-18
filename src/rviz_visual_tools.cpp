@@ -552,6 +552,7 @@ scales RvizVisualTools::intToRvizScale(std::size_t scale)
     case 9: return XXLARGE; break;
     case 10: return XXXLARGE; break;
     case 11: return XXXXLARGE; break;
+    case 12: return TEXTSIZE; break;
     default: throw std::runtime_error("Unknown size");
   }
   // clang-format on
@@ -574,6 +575,7 @@ std::string RvizVisualTools::scaleToString(scales scale)
     case XXLARGE: return "XXLARGE"; break;
     case XXXLARGE: return "XXXLARGE"; break;
     case XXXXLARGE: return "XXXXLARGE"; break;
+    case TEXTSIZE: return "TEXTSIZE"; break;
     default: throw std::runtime_error("Unknown size");
   }
   // clang-format on
@@ -699,6 +701,9 @@ geometry_msgs::Vector3 RvizVisualTools::getScale(scales scale, double marker_sca
       break;
     case XXXXLARGE:
       val = 0.5;
+      break;
+    case TEXTSIZE:
+      val = 0.35;
       break;
     default:
       ROS_ERROR_STREAM_NAMED(LOGNAME, "Not implemented yet");

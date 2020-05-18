@@ -126,6 +126,7 @@ enum scales
   XXLARGE = 9,
   XXXLARGE = 10,
   XXXXLARGE = 11,
+  TEXTSIZE = 12,
 };
 
 enum EulerConvention
