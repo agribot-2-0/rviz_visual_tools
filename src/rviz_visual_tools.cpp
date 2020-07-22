@@ -2109,8 +2109,8 @@ bool RvizVisualTools::publishPath(const EigenSTL::vector_Vector3d& path, const s
 
   if (path.size() != colors.size())
   {
-    ROS_ERROR_STREAM_NAMED(LOGNAME, "Skipping path because " << path.size() << " different from " << colors.size()
-                                                             << ".");
+    ROS_ERROR_STREAM_NAMED(LOGNAME,
+                           "Skipping path because " << path.size() << " different from " << colors.size() << ".");
     return false;
   }
 
@@ -2134,8 +2134,8 @@ bool RvizVisualTools::publishPath(const EigenSTL::vector_Vector3d& path, const s
 
   if (path.size() != colors.size())
   {
-    ROS_ERROR_STREAM_NAMED(LOGNAME, "Skipping path because " << path.size() << " different from " << colors.size()
-                                                             << ".");
+    ROS_ERROR_STREAM_NAMED(LOGNAME,
+                           "Skipping path because " << path.size() << " different from " << colors.size() << ".");
     return false;
   }
 
@@ -2149,6 +2149,30 @@ bool RvizVisualTools::publishPath(const EigenSTL::vector_Vector3d& path, const s
 }
 
 bool RvizVisualTools::publishPolygon(const geometry_msgs::Polygon& polygon, colors color, scales scale,
+                                     const std::string& ns)
+{
+  std::vector<geometry_msgs::Point> points;
+  geometry_msgs::Point temp;
+  geometry_msgs::Point first;  // remember first point because we will connect
+                               // first and last points
+                               // for last line
+  for (std::size_t i = 0; i < polygon.points.size(); ++i)
+  {
+    temp.x = polygon.points[i].x;
+    temp.y = polygon.points[i].y;
+    temp.z = polygon.points[i].z;
+    if (i == 0)
+    {
+      first = temp;
+    }
+    points.push_back(temp);
+  }
+  points.push_back(first);  // connect first and last points for last line
+
+  return publishPath(points, color, scale, ns);
+}
+
+bool RvizVisualTools::publishPolygon(const agribot_msgs::Polygon& polygon, colors color, scales scale,
                                      const std::string& ns)
 {
   std::vector<geometry_msgs::Point> points;

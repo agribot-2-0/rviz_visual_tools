@@ -30,6 +30,7 @@
   <depend>roslint</depend>
   <depend>eigen_stl_containers</depend>
   <depend>libogre-dev</depend>
+  <depend>agribot_msgs</depend>
 
   <!-- Something changed in ROS Lunar / Ubuntu Zesty that requires extra QT5 dependency-->
   <!-- I suspect this depend is more than needed, but was the only dependency available -->
@@ -40,7 +41,7 @@
   <test_depend>rosunit</test_depend>
 
   <export>
-    <rviz plugin="${prefix}/plugin_description.xml"/>
+    <rviz plugin="${prefix}/plugin_description.xml" />
   </export>
 
 </package>

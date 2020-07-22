@@ -63,6 +63,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Polygon.h>
 #include <trajectory_msgs/JointTrajectory.h>
+#include <agribot_msgs/Polygon.h>
 
 // rviz_visual_tools
 #include <rviz_visual_tools/deprecation.h>
@@ -712,6 +713,17 @@ public:
    * \return true on success
    */
   bool publishPolygon(const geometry_msgs::Polygon& polygon, colors color = RED, scales scale = MEDIUM,
+                      const std::string& ns = "Polygon");
+
+  /**
+   * \brief Display a marker of a polygon
+   * \param polygon - a series of points to connect with lines
+   * \param color - an enum pre-defined name of a color
+   * \param scale - an enum pre-defined name of a size
+   * \param ns - namespace of marker
+   * \return true on success
+   */
+  bool publishPolygon(const agribot_msgs::Polygon& polygon, colors color = RED, scales scale = MEDIUM,
                       const std::string& ns = "Polygon");
 
   /**

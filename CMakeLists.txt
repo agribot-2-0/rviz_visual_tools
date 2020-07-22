@@ -28,6 +28,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf_conversions
   trajectory_msgs
   visualization_msgs
+  agribot_msgs
 )
 
 find_package(Eigen3 REQUIRED)
@@ -73,6 +74,7 @@ catkin_package(
     tf_conversions
     trajectory_msgs
     visualization_msgs
+    agribot_msgs
   INCLUDE_DIRS
     include
     ${OGRE_OV_INCLUDE_DIRS}
