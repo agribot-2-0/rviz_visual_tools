@@ -868,7 +868,7 @@ bool RvizVisualTools::triggerEvery(std::size_t queueSize)
   return false;
 }
 
-bool RvizVisualTools::trigger(bool waitForSub)
+bool RvizVisualTools::trigger(bool wait_for_sub)
 {
   if (!batch_publishing_enabled_)
   {
@@ -880,20 +880,20 @@ bool RvizVisualTools::trigger(bool waitForSub)
     return false;
   }
 
-  bool result = publishMarkers(markers_, waitForSub);
+  bool result = publishMarkers(markers_, wait_for_sub);
 
   markers_.markers.clear();  // remove all cached markers
   return result;
 }
 
-bool RvizVisualTools::publishMarkers(visualization_msgs::MarkerArray& markers, bool waitForSub)
+bool RvizVisualTools::publishMarkers(visualization_msgs::MarkerArray& markers, bool wait_for_sub)
 {
   if (pub_rviz_markers_ == nullptr)
   {  // always check this before publishing
     loadMarkerPub();
   }
 
-  if (waitForSub)
+  if (wait_for_sub)
   {
     // Check if connected to a subscriber
     if (!pub_rviz_markers_waited_ && !pub_rviz_markers_connected_)
