@@ -868,7 +868,7 @@ bool RvizVisualTools::triggerEvery(std::size_t queueSize)
   return false;
 }
 
-bool RvizVisualTools::trigger()
+bool RvizVisualTools::trigger(bool wait_for_sub)
 {
   if (!batch_publishing_enabled_)
   {
@@ -880,27 +880,30 @@ bool RvizVisualTools::trigger()
     return false;
   }
 
-  bool result = publishMarkers(markers_);
+  bool result = publishMarkers(markers_, wait_for_sub);
 
   markers_.markers.clear();  // remove all cached markers
   return result;
 }
 
-bool RvizVisualTools::publishMarkers(visualization_msgs::MarkerArray& markers)
+bool RvizVisualTools::publishMarkers(visualization_msgs::MarkerArray& markers, bool wait_for_sub)
 {
   if (pub_rviz_markers_ == nullptr)
   {  // always check this before publishing
     loadMarkerPub();
   }
 
-  // Check if connected to a subscriber
-  if (!pub_rviz_markers_waited_ && !pub_rviz_markers_connected_)
+  if (wait_for_sub)
   {
-    ROS_DEBUG_STREAM_NAMED(LOGNAME, "Waiting for subscribers before publishing markers...");
-    waitForSubscriber(pub_rviz_markers_);
+    // Check if connected to a subscriber
+    if (!pub_rviz_markers_waited_ && !pub_rviz_markers_connected_)
+    {
+      ROS_WARN_STREAM_NAMED(LOGNAME, "Waiting for subscribers before publishing markers...");
+      waitForSubscriber(pub_rviz_markers_);
 
-    // Only wait for the publisher once, after that just ignore the lack of connection
-    pub_rviz_markers_waited_ = true;
+      // Only wait for the publisher once, after that just ignore the lack of connection
+      pub_rviz_markers_waited_ = true;
+    }
   }
 
   // Check if any actual markers exist to publish

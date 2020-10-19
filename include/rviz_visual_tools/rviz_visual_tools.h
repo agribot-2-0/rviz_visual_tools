@@ -396,14 +396,14 @@ public:
    * \brief Trigger the publish function to send out all collected markers
    * \return true on success
    */
-  bool trigger();
+  bool trigger(bool wait_for_sub = true);
 
   /**
    * \brief Display an array of markers, allows reuse of the ROS publisher
    * \param markers
    * \return true on success
    */
-  bool publishMarkers(visualization_msgs::MarkerArray& markers);
+  bool publishMarkers(visualization_msgs::MarkerArray& markers, bool wait_for_sub);
 
   /**
    * \brief Display a cone of a given angle along the x-axis
