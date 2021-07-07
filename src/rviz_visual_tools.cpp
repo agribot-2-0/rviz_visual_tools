@@ -2175,7 +2175,7 @@ bool RvizVisualTools::publishPolygon(const geometry_msgs::Polygon& polygon, colo
   return publishPath(points, color, scale, ns);
 }
 
-bool RvizVisualTools::publishPolygon(const agribot_msgs::Polygon& polygon, colors color, scales scale,
+bool RvizVisualTools::publishPolygon(const agribot_msgs::ObjectPolygon& polygon, colors color, scales scale,
                                      const std::string& ns)
 {
   std::vector<geometry_msgs::Point> points;
@@ -2183,11 +2183,11 @@ bool RvizVisualTools::publishPolygon(const agribot_msgs::Polygon& polygon, color
   geometry_msgs::Point first;  // remember first point because we will connect
                                // first and last points
                                // for last line
-  for (std::size_t i = 0; i < polygon.points.size(); ++i)
+  for (std::size_t i = 0; i < polygon.polygon.points.size(); ++i)
   {
-    temp.x = polygon.points[i].x;
-    temp.y = polygon.points[i].y;
-    temp.z = polygon.points[i].z;
+    temp.x = polygon.polygon.points[i].x;
+    temp.y = polygon.polygon.points[i].y;
+    temp.z = polygon.polygon.points[i].z;
     if (i == 0)
     {
       first = temp;
