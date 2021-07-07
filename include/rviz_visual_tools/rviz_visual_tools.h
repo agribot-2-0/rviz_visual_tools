@@ -63,7 +63,6 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Polygon.h>
 #include <trajectory_msgs/JointTrajectory.h>
-#include <agribot_msgs/Polygon.h>
 #include <agribot_msgs/ObjectPolygon.h>
 
 // rviz_visual_tools
