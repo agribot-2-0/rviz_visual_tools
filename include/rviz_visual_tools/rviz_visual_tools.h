@@ -63,7 +63,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Polygon.h>
 #include <trajectory_msgs/JointTrajectory.h>
-#include <agribot_msgs/Polygon.h>
+#include <agribot_msgs/ObjectPolygon.h>
 
 // rviz_visual_tools
 #include <rviz_visual_tools/deprecation.h>
@@ -723,7 +723,7 @@ public:
    * \param ns - namespace of marker
    * \return true on success
    */
-  bool publishPolygon(const agribot_msgs::Polygon& polygon, colors color = RED, scales scale = MEDIUM,
+  bool publishPolygon(const agribot_msgs::ObjectPolygon& polygon, colors color = RED, scales scale = MEDIUM,
                       const std::string& ns = "Polygon");
 
   /**
